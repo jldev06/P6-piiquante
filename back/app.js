@@ -34,14 +34,13 @@ require('dotenv').config();
 
 //* *****Connection à la base de données mongoDB***** *//
 mongoose
-    .connect(process.env.DB_URI, {
+
+mongoose.connect('mongodb+srv://jldev06:aZby1jld@cluster0.fm4lu.mongodb.net/?retryWrites=true&w=majority', {
         useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
+        useUnifiedTopology: true
     })
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
-
 // Création d'une application express
 const app = express();
 

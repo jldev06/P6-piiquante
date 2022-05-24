@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 //On importe le package obfuscator-email pour masquer l'email des utilisateurs
-const obfuscatorEmail = require('obfuscator-email');
+const obfuscatorEmail = require('email-obfuscator');
 
 // utilisation du package dotenv pour masquer les informations de connexion à la base de données à l'aide de variables d'environnement
 require('dotenv').config();

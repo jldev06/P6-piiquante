@@ -15,7 +15,7 @@ const multer = require('../middleware/multer-config');
 const verifySauce = require('../middleware/verifySauce');
 
 // On associe les fonctions aux différentes routes, on importe le controller
-const saucesCtrl = require('../controllers/sauces');
+const saucesCtrl = require('../controllers/sauce');
 
 //* *****Création des différentes ROUTES de l'API en leurs précisant, dans l'ordre, leurs middlewares et controllers***** *//
 // Route qui permet de créer une sauce
