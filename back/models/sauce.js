@@ -3,7 +3,6 @@
 // On importe le package mongoose
 const mongoose = require('mongoose');
 
-
 // Création d'un schema mongoose pour que les données de la base mongoDB ne puissent pas différer de celui précisé dans le schema model des sauces. L'id est généré automatiquement par MongoDB
 const sauceSchema = mongoose.Schema({
     // UserId du createur

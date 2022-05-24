@@ -1,4 +1,4 @@
-/* **********FICHIER app.js CONTIENT NOTRE APPLICATION********** */
+//* **********FICHIER app.js CONTIENT NOTRE APPLICATION********** */
 
 //* *****Import des packages***** *//
 // Importation du Framework Express
@@ -16,15 +16,11 @@ const path = require('path');
 // Importation du package Helmet vous aide à protéger votre application de certaines des vulnérabilités bien connues du Web en configurant de manière appropriée des en-têtes HTTP.
 const helmet = require('helmet');
 
-//Importation du package express-session
-const session = require('express-session');
 
-// Importation du package sanitaze-middleware
-//const sanitizeMiddleware = require('sanitize-middleware');
 
 //* *****Déclaration des routes***** *//
 // On importe la route dédiée aux sauces
-const saucesRoutes = require('./routes/sauces');
+const saucesRoutes = require('./routes/sauce');
 
 // On importe la route dédiée aux utilisateurs
 const userRoutes = require('./routes/user');
@@ -33,14 +29,13 @@ const userRoutes = require('./routes/user');
 require('dotenv').config();
 
 //* *****Connection à la base de données mongoDB***** *//
-mongoose
-
 mongoose.connect('mongodb+srv://jldev06:aZby1jld@cluster0.fm4lu.mongodb.net/?retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
+
 // Création d'une application express
 const app = express();
 
@@ -58,23 +53,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// Options pour sécuriser les cookies
-// 1 heure (60 * 60 * 1000)
-const hour = 3600000;
-const expiryDate = new Date(Date.now() + hour);
-app.set('trust proxy', 1); // trust first proxy
-app.use(
-    session({
-        secret: process.env.SEC_SES,
-        name: 'sessionId',
-        resave: false,
-        saveUninitialized: true,
-        cookie: {
-            secure: true,
-            expires: expiryDate,
-        },
-    }),
-);
+
 
 // Middleware qui permet de transformer le corp de la requête en un objet JSON utilisable
 app.use(bodyParser.json());
@@ -82,8 +61,7 @@ app.use(bodyParser.json());
 // Helmet aide à protéger de certaines des vulnérabilités bien connues du Web en configurant de manière appropriée des en-têtes HTTP.
 app.use(helmet());
 
-// Sanitize-middleware permet de se protéger contre les attaques de scripts intersites (XSS) et d'injection de commandes
-//app.use(sanitizeMiddleware());
+
 
 // Midleware qui permet de charger les fichiers qui sont dans le repertoire images
 app.use('/images', express.static(path.join(__dirname, 'images')));

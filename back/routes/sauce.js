@@ -12,7 +12,7 @@ const auth = require('../middleware/auth');
 //On importe le middleware multer pour la gestion des images
 const multer = require('../middleware/multer-config');
 // On importe le middleware verifySauce qui pour la validation
-const verifySauce = require('../middleware/verifySauce');
+const verifySauce = require('../middleware/verifySauce.js');
 
 // On associe les fonctions aux différentes routes, on importe le controller
 const saucesCtrl = require('../controllers/sauce');
